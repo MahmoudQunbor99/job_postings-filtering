@@ -32,7 +32,10 @@ const createFiltersBar = () => {
 
   filterBarInput.addEventListener("keypress", (event) => {
     if (event.keyCode == 13) {
-      selectedFilters.add(filterBarInput.value.toLowerCase());
+      if (filterBarInput.value.trim() === "") {
+        return;
+      }
+      selectedFilters.add(filterBarInput.value.toLowerCase().trim());
       createJobPostings();
     }
   });
