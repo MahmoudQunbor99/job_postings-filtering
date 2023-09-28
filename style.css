@@ -18,7 +18,7 @@ header > img {
 }
 
 #posts-container {
-  margin: 50px auto;
+  margin: 100px auto;
 }
 
 .job-posting {
@@ -32,7 +32,7 @@ header > img {
   padding: 15px;
   justify-content: space-between;
   align-items: center;
-  margin: 40px auto;
+  margin: 70px auto;
   gap: 40px;
 }
 
@@ -102,18 +102,20 @@ header > img {
 }
 
 .filters-bar {
+  display: flex;
   width: 70%;
+  min-height: 80px;
   background-color: white;
-  height: 75px;
   position: absolute;
   top: 110px;
   left: 0;
   right: 0;
   margin: 0 auto;
-  display: flex;
   align-items: center;
   padding: 10px;
   border-radius: 10px;
+  flex-wrap: wrap;
+  padding-right: 80px;
 }
 
 .clear-button {
@@ -136,6 +138,13 @@ header > img {
   font-size: xx-large;
 }
 
+.filter-input {
+  flex-grow: 1;
+  outline: none;
+  border: none;
+  height: 30px;
+}
+
 .attribution {
   font-size: 11px;
   text-align: center;
@@ -148,6 +157,11 @@ header > img {
 @media screen and (max-width: 450px) {
   .job-posting {
     position: relative;
+    gap: 20px;
+  }
+
+  .filters-bar {
+    min-height: 50px;
   }
 
   .job-posting-left-side {
@@ -157,6 +171,9 @@ header > img {
 
   .job-details {
     margin-top: 40px;
+    flex-grow: 1;
+    padding-bottom: 40px;
+    border-bottom: black 1px solid;
   }
 
   .company-img {
