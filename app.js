@@ -18,6 +18,7 @@ const fetchJobs = async () => {
 
 const createFiltersBar = () => {
   const filtersBar = createEl("div", "", ["filters-bar"]);
+  const filterBarInput = createEl("input", "", ["filter-input"]);
   postsContainer.append(filtersBar);
 
   const createFilterButton = (filter) => {
@@ -29,6 +30,13 @@ const createFiltersBar = () => {
     return button;
   };
 
+  filterBarInput.addEventListener("keypress", (event) => {
+    if (event.keyCode == 13) {
+      selectedFilters.add(filterBarInput.value.toLowerCase());
+      createJobPostings();
+    }
+  });
+
   const selectedFiltersButtons =
     Array.from(selectedFilters).map(createFilterButton);
   selectedFiltersButtons.forEach((filter) => filtersBar.appendChild(filter));
@@ -38,7 +46,7 @@ const createFiltersBar = () => {
     selectedFilters.clear();
     createJobPostings();
   });
-  filtersBar.appendChild(clearButton);
+  filtersBar.append(filterBarInput, clearButton);
 };
 
 const createJobPostingElement = (jobItem) => {
@@ -103,10 +111,9 @@ const createJobFilters = (jobItem) => {
 const createJobPostings = async () => {
   const jobData = await fetchJobs();
   postsContainer.innerText = "";
+  createFiltersBar();
 
   if (selectedFilters.size > 0) {
-    createFiltersBar();
-
     const filteredJobs = jobData.filter((jobItem) => {
       const filterMatches = (filter) =>
         selectedFilters.has(filter.toLowerCase());
